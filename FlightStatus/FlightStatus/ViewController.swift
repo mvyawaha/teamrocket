@@ -8,16 +8,32 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var flightNumber: UITextField!
+    @IBOutlet weak var departDate: UITextField!
+    
+    func closeKeyboard() {
+        self.view.endEditing(true)
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        closeKeyboard()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+     
+        flightNumber.delegate = self
+        departDate.delegate = self
     }
 
 
